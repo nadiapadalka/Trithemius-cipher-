@@ -1,0 +1,17 @@
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.csprojAssemblyReference.cache
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab_MarkupCompile.cache
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab_MarkupCompile.lref
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.exe
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.deps.json
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.runtimeconfig.json
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.runtimeconfig.dev.json
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.dll
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\bin\Debug\netcoreapp3.1\Cryptology2lab.pdb
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.g.resources
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.AssemblyInfoInputs.cache
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.AssemblyInfo.cs
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.dll
+C:\Users\1\source\repos\Cryptology2lab\Cryptology2lab\obj\Debug\netcoreapp3.1\Cryptology2lab.pdb
