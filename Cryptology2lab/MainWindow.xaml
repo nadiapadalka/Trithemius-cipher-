@@ -32,9 +32,9 @@
                 <Button Name="About" Content="Info About " Click="About_btn"/>
                 <Button Content="Close " Click="Close_btn" />
             </Menu>
-            <TextBox Name="textbox" HorizontalAlignment="Left" Margin="148,225,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Height="192" TextChanged="TextBox_TextChanged" Background="#FFCBEDE0" OpacityMask="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" SelectionBrush="#FF1F73B6" AutomationProperties.Name="Message" />
+            <TextBox Name="textbox" HorizontalAlignment="Left" Margin="148,223,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="139" TextChanged="TextBox_TextChanged" Background="#FFCBEDE0" OpacityMask="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" SelectionBrush="#FF1F73B6" AutomationProperties.Name="Message" />
             <TextBox x:Name="Encrypted_text" HorizontalAlignment="Left" Margin="464,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="194" TextChanged="TextBox_TextChanged_1" Background="#FFCBEDE0" AutomationProperties.Name="Encrypted_text"/>
-            <Label x:Name="TextLabel" Content="Text" HorizontalAlignment="Left" Margin="209,192,0,0" VerticalAlignment="Top" Height="27" Width="142" FontWeight="Bold" Background="#FF8E6A6A" Foreground="#FF91DABF"/>
+            <Label x:Name="TextLabel" Content="Text" HorizontalAlignment="Left" Margin="170,192,0,0" VerticalAlignment="Top" Height="27" Width="77" FontWeight="Bold" Background="#FF8E6A6A" Foreground="#FF91DABF"/>
             <Label Content="Encrypted text" HorizontalAlignment="Left" Margin="552,192,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.022" Height="26" Width="100" FontWeight="Bold" Background="#FF8E6A6A" Foreground="#FF91DABF"/>
             <Label Content="Enter a key " HorizontalAlignment="Left" Margin="156,64,0,0" VerticalAlignment="Top" Width="75" Height="25" Foreground="#FF91DABF" Background="#FF8E6A6A" FontWeight="Bold"/>
             <Label Content="From" HorizontalAlignment="Left" Margin="340,91,0,0" VerticalAlignment="Top" Foreground="#FF91DABF" Background="#FF8E6A6A" FontWeight="Bold"/>
@@ -59,6 +59,9 @@
             <TextBox x:Name="CTextBox" HorizontalAlignment="Left" Margin="293,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39" Height="31" TextChanged="TextBox_TextChanged_2" AutomationProperties.Name="To_TextBox" RenderTransformOrigin="1.019,0.578" Visibility="Hidden"/>
             <TextBox x:Name="BTextBox" HorizontalAlignment="Left" Margin="293,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39" Height="31" TextChanged="TextBox_TextChanged_2" AutomationProperties.Name="To_TextBox" RenderTransformOrigin="1.019,0.578" Visibility="Hidden"/>
             <TextBox x:Name="ATextBox" HorizontalAlignment="Left" Margin="293,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39" Height="31" TextChanged="TextBox_TextChanged_2" AutomationProperties.Name="To_TextBox" RenderTransformOrigin="1.019,0.578" Visibility="Hidden"/>
+            <TextBox x:Name="occTextbox" HorizontalAlignment="Left" Margin="162,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="31"/>
+            <Button x:Name="OccTableBtn" Content="Table" HorizontalAlignment="Left" Margin="317,192,0,0" VerticalAlignment="Top" Height="27" Width="93" FontWeight="Bold" Background="#FF8E6A6A" Foreground="#FF91DABF" Click="TableBtnClick"/>
+
         </Grid>
 
     </Grid>

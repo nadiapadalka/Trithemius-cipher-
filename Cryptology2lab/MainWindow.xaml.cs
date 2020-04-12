@@ -6,8 +6,17 @@ using System.Windows.Media;
 using System.Drawing.Printing;
 using System.Security.Cryptography;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text;
 
 
 namespace Cryptology_1_lab
@@ -21,6 +30,8 @@ namespace Cryptology_1_lab
         public int To = 0;
         int a,b,c = 0;
         bool buttin1Clicked, button2Clicked = false;
+        public static Dictionary<char, int> occurencies =
+        new Dictionary<char, int>();
         public MainWindow()
         {
             InitializeComponent();
@@ -235,23 +246,23 @@ namespace Cryptology_1_lab
         }
         private void Guess_btn(object sender, RoutedEventArgs e)
         {
-            //var cipher = new CaesarCipher();
-            ////SaveFileDialog saveFileDialog = new SaveFileDialog();
-            ////if (saveFileDialog.ShowDialog() == true)
-            ////    File.WriteAllText(saveFileDialog.FileName, textbox.Text);
-            ////for (int i =0; i< int.Parse(To_TextBox.Text); i++)
-            ////{ cipher.Decrypt(Encrypted_text.Text, key, alfabet); }
-            //using (System.IO.StreamWriter file =
-            //new System.IO.StreamWriter(@"C:\Users\1\Desktop\unii\bruteforce.txt"))
-            //{
-            //    for (int i = 0; i < int.Parse(To_TextBox.Text); i++)
-            //    {
-            //        // If the line doesn't contain the word 'Second', write the line to the file.
+            var cipher = new CaesarCipher();
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"C:\Users\1\Desktop\unii\bruteforce.txt"))
+            {if (buttin1Clicked == true)
+                {
+                    for (int i = 0; i < int.Parse(To_TextBox.Text); i++)
+                    {
 
-            //        file.WriteLine(cipher.Decrypt(Encrypted_text.Text, i, alfabet));
-
-            //    }
-            //}
+                        occTextbox.Text = CrackLinear(Encrypted_text.Text, textbox.Text, alfabet); 
+                        
+                    }
+                }
+            else if (button2Clicked == true)
+                {
+                    occTextbox.Text = CrackLinear(Encrypted_text.Text, textbox.Text, alfabet);
+                }
+            }
 
         }
         private void Decrypt_Click(object sender, RoutedEventArgs e)
@@ -259,23 +270,24 @@ namespace Cryptology_1_lab
             var cipher = new CaesarCipher();
             a = Int32.Parse(ATextBox.Text);
             b = Int32.Parse(BTextBox.Text);
-            // textbox.Text = cipher.Decrypt(Encrypted_text.Text, key, alfabet);
+            
+          
+
             if (buttin1Clicked == true)
             {
-                MessageBox.Show(cipher.Decrypt(Encrypted_text.Text, a, b, alfabet));
+                MessageBox.Show("Decrypted Text: ",cipher.Decrypt(Encrypted_text.Text, a, b, alfabet));
                 textbox.Text = cipher.Decrypt(Encrypted_text.Text, a, b, alfabet);
             }
             else if (button2Clicked == true)
             {
 
                 c = Int32.Parse(CTextBox.Text);
-                MessageBox.Show(cipher.Decrypt3d(Encrypted_text.Text, a, b,c, alfabet));
+                MessageBox.Show("Decrypted Text: ", cipher.Decrypt3d(Encrypted_text.Text, a, b,c, alfabet));
 
                 textbox.Text = cipher.Decrypt3d(Encrypted_text.Text, a, b,c, alfabet);
 
             }
-            // Encrypted_text.Text = cipher.Encrypt3d(textbox.Text, a, b, c, alfabet); 
-            // TextLabel.Content = "Decrypted text";
+         
         }
 
         private void Encrypt_Click(object sender, RoutedEventArgs e)
@@ -283,13 +295,9 @@ namespace Cryptology_1_lab
             a = Int32.Parse(ATextBox.Text);
             b = Int32.Parse(BTextBox.Text);
             var fullAlfabet = alfabet + alfabet.ToLower();
-            Dictionary<string, int> occurencies =
-            new Dictionary<string, int>();
-            foreach (char element in textbox.Text)
-            {
-                count++;
-                MessageBox.Show($"Element #{count}: {element}");
-            }
+
+            
+            
             var cipher = new CaesarCipher();
             //[А-ЩЬЮЯҐЄІЇа-щьюяґєії]
             if ((a >= 0) && (a < int.Parse(To_TextBox.Text))&& (b >= 0) && (b < int.Parse(To_TextBox.Text)))
@@ -331,6 +339,7 @@ namespace Cryptology_1_lab
             }
             else
             {
+
                 Validation_Label_Message.Content = "Not Valid";
                 Validation_Label_Message.Background = new SolidColorBrush(Colors.Red);
             }
@@ -347,6 +356,45 @@ namespace Cryptology_1_lab
                     Encrypted_text.Text = cipher.Encrypt3d(textbox.Text, a, b, c, alfabet); }
             }
         }
+
+        public static string CrackMoto(string encryptedText, string decryptedText, string alfabet)
+        {
+            var deltaStringBuilder = new StringBuilder(encryptedText.Length);
+            var fullAlfabet = alfabet + alfabet.ToLower();
+
+            for (int i = 0; i < encryptedText.Length; ++i)
+            {
+                int delta = (fullAlfabet.IndexOf(encryptedText[i]) - fullAlfabet.IndexOf(decryptedText[i]) + fullAlfabet.Length) % fullAlfabet.Length;
+                deltaStringBuilder.Append(fullAlfabet[delta]);
+            }
+
+            var deltaString = deltaStringBuilder.ToString();
+            for (int i = 1; i < deltaString.Length + 1; ++i)
+            {
+                var pattern = deltaString.Substring(0, i);
+                if (PatternCanFillString(pattern, deltaString))
+                {
+                    return pattern;
+                }
+            }
+
+            return null;
+        }
+        private static bool PatternCanFillString(string pattern, string str)
+        {
+            var replaced = str.Replace(pattern, "");
+            return replaced.Length < pattern.Length && pattern.Contains(replaced);
+        }
+        public static string CrackLinear(string encryptedText, string decryptedText, string alfabet)
+        {
+            var fullAlfabet = alfabet + alfabet.ToLower();
+
+            //var alph = alphabet[a];
+            int coefB = fullAlfabet.IndexOf(encryptedText[0]) - fullAlfabet.IndexOf(decryptedText[0]);
+            int coefA = fullAlfabet.IndexOf(encryptedText[1]) - fullAlfabet.IndexOf(decryptedText[1]) - coefB;
+            coefB = coefB - 1;
+            return $"{coefA} {coefB}";
+        }
         private void eng_btn_Click(object sender, RoutedEventArgs e)
         {
             Language_Box.Text = "English";
@@ -356,6 +404,31 @@ namespace Cryptology_1_lab
             To = 26;
 
         }
+
+        private void TableBtnClick(object sender, RoutedEventArgs e)
+        {
+            DataGrid table = new DataGrid();
+            Window p = new Window();
+            p.Owner = this;
+            string str = textbox.Text;
+            //OccuriencesTable.ItemsSource = occurencies;
+
+            foreach (char element in textbox.Text)
+            {
+
+                int freq = str.Count(f => (f == element));
+                if (occurencies.ContainsKey(element) == false)
+                { occurencies.Add(element, freq); }
+            }
+            table.ItemsSource = occurencies;
+            // table.Columns[1].Header = "Letter";
+            // table.Columns[2].Header = "Frequency";
+            table.Width = 800;
+            p.Content = table;
+            p.Show();
+            
+        }
+
         private void ukr_btn_Click(object sender, RoutedEventArgs e)
         {
             alfabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
